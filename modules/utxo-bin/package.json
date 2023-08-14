@@ -16,8 +16,7 @@
     "build": "yarn tsc --build --incremental --verbose .",
     "lint": "eslint --quiet .",
     "unit-test": "mocha --recursive test/",
-    "fmt": "prettier --write '{bin,src,test}/**/*.{ts,js}'",
-    "precommit": "yarn lint-staged"
+    "fmt": "prettier --write '{bin,src,test}/**/*.{ts,js}'"
   },
   "repository": {
     "type": "git",

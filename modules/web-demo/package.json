@@ -20,8 +20,7 @@
     "clean": "rm -r ./dist",
     "lint": "eslint --quiet .",
     "cypress-ui": "cypress open-ct",
-    "test": "cypress run-ct",
-    "precommit": "yarn lint-staged"
+    "test": "cypress run-ct"
   },
   "dependencies": {
     "@bitgo/key-card": "^0.1.16",

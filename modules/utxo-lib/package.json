@@ -26,8 +26,7 @@
     "test": "npm run coverage",
     "unit-test": "mocha --recursive test",
     "lint": "eslint --quiet .",
-    "fmt": "prettier --write '{src,test}/**/*.{ts,js}'",
-    "precommit": "yarn lint-staged"
+    "fmt": "prettier --write '{src,test}/**/*.{ts,js}'"
   },
   "nyc": {
     "include": [
