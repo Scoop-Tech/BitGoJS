@@ -1,5 +1,5 @@
 import * as utxolib from '@bitgo/utxo-lib';
-import { bip32, BIP32Interface, ECPairInterface } from '@bitgo/utxo-lib';
+import { bip32, BIP32Interface, ECPairInterface, Network } from '@bitgo/utxo-lib';
 import { sanitizeLegacyPath } from '../api';
 import * as bitcoinUtil from './bitcoin';
 
@@ -59,7 +59,7 @@ export class HDNode {
 }
 
 export interface Derivable {
-  deriveKey(path: string): ECPairCompat;
+  deriveKey(path: string, network?: any): ECPairCompat;
   derive(path: string): HDNode;
 }
 
@@ -69,10 +69,14 @@ export function hdPath(hdNode: HDNode): Derivable {
       return hdNode.derivePath(path);
     },
 
-    deriveKey(path: string): ECPairCompat {
+    deriveKey(path: string, network?: Network): ECPairCompat {
       const node = hdNode.derivePath(path);
       if (node.privateKey) {
-        return createECPairCompat(utxolib.ECPair.fromPrivateKey(node.privateKey));
+        const ecPairOptions = {
+          network,
+          compressed: true
+        }
+        return createECPairCompat(utxolib.ECPair.fromPrivateKey(node.privateKey, ecPairOptions));
       } else {
         return createECPairCompat(utxolib.ECPair.fromPublicKey(node.publicKey));
       }
